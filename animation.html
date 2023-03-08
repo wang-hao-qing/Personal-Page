@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body> 
+      <div class="head"></div>
+      <div class="h1"></div>
+</body>
+</html>
+<style>
+    .head {
+        height: 100px;
+        background-color: aqua;
+    }
+    .h1{
+        height: 5000px;
+        background-color: black;
+    }
+    </style>
+<script>
+    let prePosition = 0;
+    const headDom = document.querySelector('.head');
+    const headHeight = headDom.getClientRects()[0].height;
+    console.log(headDom,headHeight);
+    headDom.style.transition = "all 0.5s";
+    window.addEventListener('scroll',(e)=>{
+        const currentPosition = window.scrollY;
+        // console.log(currentPosition);
+        if(currentPosition > prePosition) {
+           requestAnimationFrame(()=>{
+            headDom.style.top = `-${headHeight}px`;
+           }) 
+        }else {
+            requestAnimationFrame(()=>{
+                headDom.style.top =  `0px`;
+           }) 
+        }
+        prePosition = currentPosition;
+        // console.log(prePosition);
+    })
+</script>
