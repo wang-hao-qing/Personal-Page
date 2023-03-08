@@ -20,13 +20,12 @@ const goAbout= (url: string) =>{
 <style>
 .img1 {
     height: 80px;
-    width: auto;
+    width: 80px;
     cursor: pointer;
 }
 .person {
-    position: absolute;
-    left: 30%;
-    top: 10%
-
+    margin-top: 50px;
+    width: 150px;
+    height: 200px;
 }
 </style>

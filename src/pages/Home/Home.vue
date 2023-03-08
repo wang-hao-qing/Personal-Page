@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="home">
       <Personal></Personal>
       <Tab></Tab>
       <div class="list" @click="goList('/list')">点我跳转到list文章</div>
@@ -17,3 +17,9 @@ import Tab from './Tab/Tab.vue'
       })
   }
 </script>
+<style>
+.home{
+  display: flex;
+  flex-wrap: wrap;
+}
+</style>

@@ -11,9 +11,8 @@
 
 <style>
 .tab {
-  position: absolute;
-  top: 10%;
-  right: 30%; 
+  width: 200px;
+  height: 50px;
 }
 h4{
   display: inline;
