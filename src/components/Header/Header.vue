@@ -3,10 +3,11 @@
    <div >    
 <Transition >
    <div class="head" v-show="contorl" key="box1">
-            <div  class="img1" @click="goHome('/home') "> </div>
-            <!-- <img  class="img2"  src="./images/about.png" @click="goAbout('/about')"> 
-            <img  class="img3"  src="./images/color.png" alt=""> 
-            <img  class="img4"  src="./images/language.png" alt="">  -->
+           
+               <img class="c1" src="./images/home1.png" @click="goHome('/home')" title="Home">
+               <img class="c2" src="./images/about1.png" @click="goAbout('/about')" title="About">
+               <img class="c3" src="./images/color1.png" title="Toggle Mode">
+               <img class="c4" src="./images/language1.png" title="Change Language">
    </div>      
 </Transition>
      
@@ -71,13 +72,28 @@ import { useRouter  } from 'vue-router'
     background-color: rgb(245,245,245);
 }
 .img1{
+   box-sizing: border-box;
    width: 40px;
-   height: 30px;
-   background: url(./images/home1.png) no-repeat;
+   height: 20px;
+   background-size:40px 40px ;
+   background-image: url(./images/home1.png) ;
+   background-repeat:no-repeat;
    
 }
-.img1:hover{
-   background: url(./images/home.png) no-repeat;
+.c1,.c2,.c3,.c4{
+   cursor:pointer
+}
+.c1:hover{
+   content: url(./images/home.png);
+}
+.c2:hover{
+   content: url(./images/about.png);
+}
+.c3:hover{
+   content: url(./images/color.png);
+}
+.c4:hover{
+   content: url(./images/language.png);
 }
 
 .v-enter-active,
@@ -89,11 +105,5 @@ import { useRouter  } from 'vue-router'
 .v-leave-to {
   opacity: 0;
 }
-img.im1:hover{
-  /* background-image: url('./images/home.png'); */
-  background-color: aquamarine;
-}
-a.im:hover{
-  background-image: url('./images/home.png');
-}
+
 </style>
