@@ -16,7 +16,7 @@ const goAbout= (url: string) =>{
       }).catch(err=>console.log(err));
    }
 </script>
-<style>
+<style scoped>
 .img1 {
     height: 80px;
     width: 80px;

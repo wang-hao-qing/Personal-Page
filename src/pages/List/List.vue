@@ -5,7 +5,7 @@
   </div>
    
 </template>
-<script >
+<script  >
 import HelloWorld  from './operatingsystem.md'
 export default {
   components: {

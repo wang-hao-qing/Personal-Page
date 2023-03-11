@@ -14,7 +14,6 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, } from "vue";
 import { useRouter } from 'vue-router'
 import { useDark, useToggle } from '@vueuse/core'
 import { useColorMode } from '@vueuse/core'
@@ -30,22 +29,8 @@ const mode = useColorMode({
 const isDark = useDark()
 const toggleDark = useToggle(isDark)
 
-
-
 const { control } = useHandleScroll()
-console.log(control);
-
 //这里获取control时涉及对象的解构赋值。
-//挂载
-// onMounted(() => {
-//    window.addEventListener('scroll', useHandleScroll)//这里不能写()
-//    /* 由于如果绑定在window上，那么路由切换之后，事件依然会被触发，所以在div元素上绑定
-//   (如果绑定在window上，那么在导航守卫里，路由离开的时候解绑就行了，一样可以实现功能）*/
-// })
-// // 组件销毁前
-// onBeforeUnmount(() => {
-//    window.removeEventListener('scroll', useHandleScroll)
-// })
 
 
 
@@ -63,20 +48,8 @@ const goAbout = (url: string) => {
 
 </script>
 
-<style>
-.dark {
-   background: rgb(69, 69, 69);
-   color: white;
-}
+<style scoped>
 
-.cafe {
-   background: rgb(103, 71, 71);
-   color: aliceblue;
-}
-
-.app {
-   position: relative;
-}
 
 .head {
    position: fixed;
@@ -88,16 +61,6 @@ const goAbout = (url: string) => {
    width: 100%;
    height: 40px;
    background-color: rgb(245, 245, 245);
-}
-
-.img1 {
-   box-sizing: border-box;
-   width: 40px;
-   height: 20px;
-   background-size: 40px 40px;
-   background-image: url(./images/home1.png);
-   background-repeat: no-repeat;
-
 }
 
 .c1,

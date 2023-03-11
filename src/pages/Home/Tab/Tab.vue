@@ -18,11 +18,11 @@ var $router = useRouter()
       })
   }
 </script>
-<style>
+<style scoped>
 .tab {
   width: 350px;
   height: 50px;
-  margin-left: 20%;
+ 
 }
 h4{
   display: inline;

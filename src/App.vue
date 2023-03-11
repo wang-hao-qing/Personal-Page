@@ -14,5 +14,13 @@ import Header from './components/Header/Header.vue'
 
 
 <style  scoped>
+.dark {
+   background: rgb(49, 43, 43);
+   color: white;
+}
 
+.cafe {
+   background: rgb(103, 71, 71);
+   color: aliceblue;
+}
 </style>

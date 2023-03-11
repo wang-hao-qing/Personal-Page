@@ -12,7 +12,7 @@ import Tab from './Tab/Tab.vue'
 
   
 </script>
-<style>
+<style scoped>
 .home{
   display: flex;
   flex-wrap: wrap;
