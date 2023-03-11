@@ -5,8 +5,8 @@
 
             <img class="c1" src="./images/home1.png" @click="goHome('/home')" title="Home">
             <img class="c2" src="./images/about1.png" @click="goAbout('/about')" title="About">
-            <img class="c3" src="./images/color1.png" title="Toggle Mode" @click="toggleDark()">           
-            <img class="c4" src="./images/language1.png" title="Change Language" @click="mode='cafe'">
+            <img class="c3" src="./images/color1.png" title="Toggle Mode" @click="toggleDark()">
+            <img class="c4" src="./images/language1.png" title="Change Language" @click="mode = 'cafe'">
          </div>
       </Transition>
 
@@ -18,10 +18,10 @@ import { onBeforeUnmount, onMounted, } from "vue";
 import { useRouter } from 'vue-router'
 import { useDark, useToggle } from '@vueuse/core'
 import { useColorMode } from '@vueuse/core'
-import {useHandleScroll} from './hooks/handleScroll'
+import { useHandleScroll } from './hooks/handleScroll'
 //useColorMode除了dark和light还可以使用自定义的颜色模式，和useToggle原理一样给html标签加一个class。
 const mode = useColorMode({
-   modes:{
+   modes: {
       cafe: 'cafe',
    }
 }) // Ref<'dark' | 'light' |'cafe'>
@@ -32,20 +32,20 @@ const toggleDark = useToggle(isDark)
 
 
 
-const {control} = useHandleScroll()
+const { control } = useHandleScroll()
 console.log(control);
 
 //这里获取control时涉及对象的解构赋值。
 //挂载
-onMounted(() => {
-   window.addEventListener('scroll', useHandleScroll)//这里不能写()
-   /* 由于如果绑定在window上，那么路由切换之后，事件依然会被触发，所以在div元素上绑定
-  (如果绑定在window上，那么在导航守卫里，路由离开的时候解绑就行了，一样可以实现功能）*/
-})
-// 组件销毁前
-onBeforeUnmount(() => {
-   window.removeEventListener('scroll', useHandleScroll)
-})
+// onMounted(() => {
+//    window.addEventListener('scroll', useHandleScroll)//这里不能写()
+//    /* 由于如果绑定在window上，那么路由切换之后，事件依然会被触发，所以在div元素上绑定
+//   (如果绑定在window上，那么在导航守卫里，路由离开的时候解绑就行了，一样可以实现功能）*/
+// })
+// // 组件销毁前
+// onBeforeUnmount(() => {
+//    window.removeEventListener('scroll', useHandleScroll)
+// })
 
 
 
@@ -68,10 +68,12 @@ const goAbout = (url: string) => {
    background: rgb(69, 69, 69);
    color: white;
 }
-.cafe{
+
+.cafe {
    background: rgb(103, 71, 71);
    color: aliceblue;
 }
+
 .app {
    position: relative;
 }
@@ -129,4 +131,5 @@ const goAbout = (url: string) => {
 .v-enter-from,
 .v-leave-to {
    opacity: 0;
-}</style>
+}
+</style>
