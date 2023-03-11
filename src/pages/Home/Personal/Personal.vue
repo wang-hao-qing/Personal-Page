@@ -4,8 +4,7 @@
             @click="goAbout('/about')" title="goAbout">
         <h3>你好,我是whq</h3>
         <h6>我认为烧烤比烤肉好吃</h6>
-      
-    </div>
+       </div>
     
 </template>
 <script setup lang="ts">
@@ -24,8 +23,14 @@ const goAbout= (url: string) =>{
     cursor: pointer;
 }
 .person {
-    margin-top: 50px;
-    width: 150px;
+    margin-top: -50px;
+    width: 300px;
     height: 200px;
+}
+@media  screen and (max-width: 811px){
+  .person{
+    background-color: aquamarine;
+    width: 100%;
+  }
 }
 </style>

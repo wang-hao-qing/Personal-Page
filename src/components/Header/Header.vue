@@ -5,8 +5,8 @@
 
             <img class="c1" src="./images/home1.png" @click="goHome('/home')" title="Home">
             <img class="c2" src="./images/about1.png" @click="goAbout('/about')" title="About">
-            <img class="c3" src="./images/color1.png" title="Toggle Mode">
-            <img class="c4" src="./images/language1.png" title="Change Language">
+            <img class="c3" src="./images/color1.png" title="Toggle Mode" @click="toggleDark()">           
+            <img class="c4" src="./images/language1.png" title="Change Language" @click="mode='cafe'">
          </div>
       </Transition>
 
@@ -14,32 +14,41 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref, } from "vue";
+import { onBeforeUnmount, onMounted, } from "vue";
 import { useRouter } from 'vue-router'
-
-//数据control，代表header的显示与隐藏
-var control = ref(true)
-function handleScroll(): void {
-   // 页面滑动的距离
-   let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-   // console.log(scrollTop.value);
-   // 当页面滑动的距离大于300px时元素显示，否则不显示
-   if (scrollTop >= 30) {
-      control.value = true
-   } else {
-      control.value = false
+import { useDark, useToggle } from '@vueuse/core'
+import { useColorMode } from '@vueuse/core'
+import {useHandleScroll} from './hooks/handleScroll'
+//useColorMode除了dark和light还可以使用自定义的颜色模式，和useToggle原理一样给html标签加一个class。
+const mode = useColorMode({
+   modes:{
+      cafe: 'cafe',
    }
-}
+}) // Ref<'dark' | 'light' |'cafe'>
+
+//useDark和useToggle配合使用，useDark给isDark赋值true，useToggle(isDark)给根html一个class='dark'，再写style样式达到切换的效果
+const isDark = useDark()
+const toggleDark = useToggle(isDark)
+
+
+
+const {control} = useHandleScroll()
+console.log(control);
+
+//这里获取control时涉及对象的解构赋值。
 //挂载
 onMounted(() => {
-   window.addEventListener('scroll', handleScroll)//这里不能写()
+   window.addEventListener('scroll', useHandleScroll)//这里不能写()
    /* 由于如果绑定在window上，那么路由切换之后，事件依然会被触发，所以在div元素上绑定
   (如果绑定在window上，那么在导航守卫里，路由离开的时候解绑就行了，一样可以实现功能）*/
 })
 // 组件销毁前
 onBeforeUnmount(() => {
-   window.removeEventListener('scroll', handleScroll)
+   window.removeEventListener('scroll', useHandleScroll)
 })
+
+
+
 var $router = useRouter()
 const goHome = (url: string) => {
    $router.push({
@@ -55,6 +64,14 @@ const goAbout = (url: string) => {
 </script>
 
 <style>
+.dark {
+   background: rgb(69, 69, 69);
+   color: white;
+}
+.cafe{
+   background: rgb(103, 71, 71);
+   color: aliceblue;
+}
 .app {
    position: relative;
 }
@@ -64,7 +81,7 @@ const goAbout = (url: string) => {
    top: 0;
    left: 0;
    display: flex;
-   justify-content: space-around;
+   justify-content: space-between;
    flex-direction: row;
    width: 100%;
    height: 40px;
